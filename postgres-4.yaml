@@ -1,0 +1,48 @@
+postgresql:
+  enabled: true
+  postgresqlUsername: myuser
+  postgresqlPassword: mypassword
+  postgresqlDatabase: mydatabase
+
+service:
+  name: my-postgresql-svc
+  type: ClusterIP
+
+persistence:
+  enabled: true
+  size: 2Gi
+
+tolerations: []
+
+nodeSelector: {}
+
+resources: {}
+
+## Uncomment this to enable metrics (prometheus)
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+  serviceMonitorSelector: {}
+readinessProbe:
+  httpGet:
+    path: /healthz
+    port: 5432
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 5
+livenessProbe:
+  httpGet:
+    path: /healthz
+    port: 5432
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 5
+
+# Add the global.postgresql.auth settings here
+global:
+  postgresql:
+    auth:
+      username: testuser
+      password: testpass
+      database: testdb

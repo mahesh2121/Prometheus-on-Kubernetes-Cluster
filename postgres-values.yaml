@@ -1,0 +1,14 @@
+---
+postgresqlDatabase: test
+metrics:
+  enabled: true
+  postgresqlUsername: myuser
+  postgresqlPassword: mypassword
+  serviceMonitor:
+    enabled: false
+    additionalLabels:
+      prometheus: devops
+  auth:
+    database: metricsdb
+
+ 
